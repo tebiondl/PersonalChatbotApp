@@ -1,0 +1,66 @@
+<MainChatScreen>:
+    chat_history_container: chat_history_container
+    message_input: message_input
+    chat_area: chat_area
+    chat_history: chat_history
+    send_button: send_button
+
+    BoxLayout:
+        orientation: 'horizontal'
+
+        BoxLayout:
+            id: chat_history_container
+            orientation: 'vertical'
+            size_hint_x: 0.3
+
+            Button:
+                text: "New Chat"
+                size_hint_y: None
+                height: 40
+                on_press: root.new_chat()
+
+            ScrollView:
+                size_hint: (1, 1)
+                do_scroll_x: False
+                do_scroll_y: True
+
+                GridLayout:
+                    id: chat_history
+                    cols: 1
+                    size_hint_y: None
+                    height: self.minimum_height
+
+                    Label:
+                        text: "Chat history will appear here."
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x: 0.7
+
+            ScrollView:
+                size_hint: (1, 0.8)
+                do_scroll_x: False
+                do_scroll_y: True
+
+                GridLayout:
+                    id: chat_area
+                    cols: 1
+                    size_hint_y: None
+                    height: self.minimum_height
+
+            BoxLayout:
+                size_hint: (1, 0.2)
+                orientation: 'horizontal'
+
+                TextInput:
+                    id: message_input
+                    size_hint: (0.8, 1)
+                    multiline: False
+
+                Button:
+                    id: send_button
+                    text: "Send"
+                    size_hint: (0.2, 1)
+                    on_press: root.send_message()
